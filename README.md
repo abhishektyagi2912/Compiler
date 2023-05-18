@@ -16,9 +16,9 @@ EXPERIMENT 9:- https://hastebin.com/share/ozosusuney.sql
 
 EXPERIMENT 10:- https://hastebin.com/share/vehedevugo.sql
 
-EXPERIMENT 11:- https://hastebin.com/share/nakotacacu.sql
+EXPERIMENT 11:- https://hastebin.com/share/xucinaquju.sql
 
-EXPERIMENT 12:- https://hastebin.com/share/xucinaquju.sql
+EXPERIMENT 12:- https://hastebin.com/share/nakotacacu.sql
 
 EZPERIMENT 13:- https://hastebin.com/share/denokizidu.sql
 

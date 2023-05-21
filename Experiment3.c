@@ -1,4 +1,4 @@
-EXPERIMENT 3:- 
+// EXPERIMENT 3:- Computation of FOLLOW in a grammar.
 
 
 #include<stdio.h> 

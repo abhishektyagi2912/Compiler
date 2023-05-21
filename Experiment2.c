@@ -1,4 +1,4 @@
-EXPERIMENT 2:- 
+// EXPERIMENT 2:- Computation of FIRST in a grammar
 
 
 #include<stdio.h> 

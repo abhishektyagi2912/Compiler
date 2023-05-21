@@ -16,7 +16,7 @@ EXPERIMENT 7:- https://github.com/abhishektyagi2912/Compiler/blob/main/Experimen
 
 EXPERIMENT 8:- https://github.com/abhishektyagi2912/Compiler/blob/main/Experiment8.c
 
-EXPERIMENT 9:-
+EXPERIMENT 9:- https://github.com/abhishektyagi2912/Compiler/blob/main/Experiment9.c
 
 EXPERIMENT 10:- https://github.com/abhishektyagi2912/Compiler/blob/main/Experiment10.c
 
@@ -33,7 +33,5 @@ EXPERIMENT 1 - 3:- https://hastebin.com/share/vosipupeqi.cpp
 EXPERIMENT 4 - 6:- https://hastebin.com/share/cevuvaqizo.cpp
 
 EXPERIMENT 7 & 8:- https://hastebin.com/share/xerineluce.cpp
-
-EXPERIMENT 9: https://hastebin.skyra.pw/feyeridise.prolog
 
 EXPERIMENT 10-13:- https://hastebin.com/share/kerogukexu.cpp

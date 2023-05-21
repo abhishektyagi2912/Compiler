@@ -1,147 +1,89 @@
 // EXPERIMENT 11:- Intermediate code generation - Prefix Expression
 
 
-#include<stdio.h>
-#include<stdlib.h>      
-#include<ctype.h>    
-#include<string.h>
-#define SIZE 100
-char stack[SIZE];
-int top = -1;
-void push(char item)
+#include <bits/stdc++.h>
+using namespace std;
+bool isOperator(char c)
 {
-	if(top >= SIZE-1)
-	{
-		printf("\nStack Overflow.");
-	}
-	else
-	{
-		top = top+1;
-		stack[top] = item;
-	}
+	return (!isalpha(c) && !isdigit(c));
 }
-char pop()
+int getPriority(char C)
 {
-	char item ;
-	if(top <0)
-	{
-		printf("stack under flow: invalid infix expression");
-		getchar();
-		exit(1);
-	}
-	else
-	{
-		item = stack[top];
-		top = top-1;
-		return(item);
-	}
-}
-int is_operator(char symbol)
-{
-	if(symbol == '^' || symbol == '*' || symbol == '/' || symbol == '+' || symbol =='-')
-	{
+	if (C == '-' || C == '+')
 		return 1;
-	}
-	else
-	{
+	else if (C == '*' || C == '/')
+		return 2;
+	else if (C == '^')
+		return 3;
 	return 0;
-	}
 }
-int precedence(char symbol)
+string infixToPostfix(string infix)
 {
-	if(symbol == '^')
-	{
-		return(3);
+	infix = '(' + infix + ')';
+	int l = infix.size();
+	stack<char> char_stack;
+	string output;
+	for (int i = 0; i < l; i++) {
+		if (isalpha(infix[i]) || isdigit(infix[i]))
+			output += infix[i];
+		else if (infix[i] == '(')
+			char_stack.push('(');
+		else if (infix[i] == ')') {
+			while (char_stack.top() != '(') {
+				output += char_stack.top();
+				char_stack.pop();
+			}
+			char_stack.pop();
+		}
+		else {
+			if (isOperator(char_stack.top())) {
+				if (infix[i] == '^') {
+					while (
+						getPriority(infix[i])
+						<= getPriority(char_stack.top())) {
+						output += char_stack.top();
+						char_stack.pop();
+					}
+				}
+				else {
+					while (
+						getPriority(infix[i])
+						< getPriority(char_stack.top())) {
+						output += char_stack.top();
+						char_stack.pop();
+					}
+				}
+				char_stack.push(infix[i]);
+			}
+		}
 	}
-	else if(symbol == '*' || symbol == '/')
-	{
-		return(2);
+	while (!char_stack.empty()) {
+		output += char_stack.top();
+		char_stack.pop();
 	}
-	else if(symbol == '+' || symbol == '-')          
-	{
-		return(1);
-	}
-	else
-	{
-		return(0);
-	}
+	return output;
 }
-void InfixToPostfix(char infix_exp[], char postfix_exp[])
-{ 
-	int i, j;
-	char item;
-	char x;
-	push('(');                              
-	strcat(infix_exp,")");                 
-	i=0;
-	j=0;
-	item=infix_exp[i];        
-	while(item != '\0')        
-	{
-		if(item == '(')
-		{
-			push(item);
-		}
-		else if( isdigit(item) || isalpha(item))
-		{
-			postfix_exp[j] = item;              
-			j++;
-		}
-		else if(is_operator(item) == 1)       
-		{
-			x=pop();
-			while(is_operator(x) == 1 && precedence(x)>= precedence(item))
-			{
-				postfix_exp[j] = x;                  
-				j++;
-				x = pop();                       
-			}
-			push(x);
-		
-			push(item);                
-		}
-		else if(item == ')')         
-		{
-			x = pop();                   
-			while(x != '(')               
-			{
-				postfix_exp[j] = x;
-				j++;
-				x = pop();
-			}
-		}
-		else
-		{ 
-			printf("\nInvalid infix Expression.\n");       
-			getchar();
-			exit(1);
-		}
-		i++;
+string infixToPrefix(string infix)
+{
+	int l = infix.size();
+	reverse(infix.begin(), infix.end());
+	for (int i = 0; i < l; i++) {
 
-
-		item = infix_exp[i]; 
+		if (infix[i] == '(') {
+			infix[i] = ')';
+		}
+		else if (infix[i] == ')') {
+			infix[i] = '(';
+		}
 	}
-	if(top>0)
-	{
-		printf("\nInvalid infix Expression.\n");      
-		getchar();
-		exit(1);
-	}
-	if(top>0)
-	{
-		printf("\nInvalid infix Expression.\n");       
-		getchar();
-		exit(1);
-	}
-	postfix_exp[j] = '\0';
+	string prefix = infixToPostfix(infix);
+	reverse(prefix.begin(), prefix.end());
+	return prefix;
 }
 int main()
 {
-	char infix[SIZE], postfix[SIZE];         
-	printf("\nEnter Infix expression : ");
-	scanf("%[^\n]%*c", infix);
-	InfixToPostfix(infix,postfix);                  
-	printf("Postfix Expression: ");
-	puts(postfix);                     
+	string s;
+	cin>>s;
+	cout << infixToPrefix(s) << std::endl;
 	return 0;
 }
